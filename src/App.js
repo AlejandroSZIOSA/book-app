@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import AddDocument from "./components/AddDocument";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [lista, setLista] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts/", {
+          method: "GET",
+        });
+        const result = await res.json();
+        console.log(result);
+
+        setLista(result);
+      } catch (error) {
+        console.log("ERROR", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return <div>{lista ? <AddDocument /> : <h1>Not lista loaded</h1>}</div>;
 }
 
 export default App;
