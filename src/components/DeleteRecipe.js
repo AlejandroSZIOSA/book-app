@@ -5,8 +5,8 @@ export default function DeleteRecipe() {
   const [result, setResult] = useState(null);
 
   const handleDelete = async (event) => {
+    event.preventDefault();
     try {
-      event.preventDefault();
       const res = await fetch(`http://localhost:4000/recipes/${idInput}`, {
         method: "DELETE",
       });

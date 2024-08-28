@@ -16,14 +16,15 @@ export default function AddRecipe() {
         },
         body: JSON.stringify(data),
       });
-      console.log(res.status); //200 okay
-      const result = " Success";
-      setResult(result);
+      if (res.ok) {
+        setResult("success");
+      } else {
+        setResult("Fail");
+      }
     } catch (error) {
       console.error(error);
     } finally {
-      setTitle("");
-      /* event.target.reset() */
+      event.target.reset();
     }
   };
 
@@ -37,8 +38,8 @@ export default function AddRecipe() {
         <input
           id="title"
           type="text"
-          value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
         ></input>
         <button type="submit">Add</button>
       </form>
