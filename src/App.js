@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import AddDocument from "./components/AddDocument";
+import AddRecipe from "./components/AddRecipe";
+import DeleteRecipe from "./components/DeleteRecipe";
 
 function App() {
   const [lista, setLista] = useState(null);
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts/", {
+        const res = await fetch("http://localhost:4000", {
           method: "GET",
         });
         const result = await res.json();
@@ -20,7 +21,19 @@ function App() {
     fetchData();
   }, []);
 
-  return <div>{lista ? <AddDocument /> : <h1>Not lista loaded</h1>}</div>;
+  if (lista) {
+    return (
+      <div>
+        <AddRecipe />
+        <DeleteRecipe />
+      </div>
+    );
+  } else
+    return (
+      <div>
+        <h1>Not lista loaded</h1>
+      </div>
+    );
 }
 
 export default App;
