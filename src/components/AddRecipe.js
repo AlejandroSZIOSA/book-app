@@ -17,7 +17,7 @@ export default function AddRecipe() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        setResult("success");
+        setResult("Success");
       } else {
         setResult("Fail");
       }
@@ -31,7 +31,6 @@ export default function AddRecipe() {
   return (
     <div>
       <form onSubmit={handleAddRecipe}>
-        <h1> Add New Recipe</h1>
         <label for="title" type="text">
           Title
         </label>

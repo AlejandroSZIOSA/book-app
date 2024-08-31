@@ -24,6 +24,7 @@ function App() {
   if (lista) {
     return (
       <div>
+        <h1>Recipes / API(Express)</h1>
         <AddRecipe />
         <DeleteRecipe />
       </div>
